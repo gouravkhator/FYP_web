@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-"""# **Content Based Recommenders**"""
+"""Content Based Recommenders"""
 
 links_small = pd.read_csv('app/inputs/links_small.csv')
 links_small = links_small[links_small['tmdbId'].notnull()]['tmdbId'].astype('int')
@@ -11,29 +11,18 @@ md = md.drop([19730, 29503, 35587])
 md['id'] = md['id'].astype('int')
 
 smd = md[md['id'].isin(links_small)]
-smd.shape
 
-"""**Movie Description Based Recommender**"""
+"""Movie Description Based Recommender**"""
 
 smd['tagline'] = smd['tagline'].fillna('')
 smd['description'] = smd['overview'] + smd['tagline']
 smd['description'] = smd['description'].fillna('')
 
-"""**TF-IDF** stands for Text Frequency Inverse Document Frequency. 
-
-
-
-The formula for tf-idf is : 
-
-"""
-
 tf = TfidfVectorizer(analyzer='word',ngram_range=(1, 2),min_df=0, stop_words='english')
 tfidf_matrix = tf.fit_transform(smd['description'])
 
-tfidf_matrix.shape
-
 """
-**Cosine Similarity**
+Cosine Similarity
 """
 
 cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
