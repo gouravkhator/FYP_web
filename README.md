@@ -5,9 +5,9 @@ This is the final year project.
 ## Team Members
 
 * Mainak Roy (13000117095)
-* Gourav Khator
-* Atraya Bose
-* Aishik Roy
+* Gourav Khator (13000117104)
+* Atraya Bose (13000117116)
+* Aishik Roy (13000117133)
 
 ---
 ## Project Usage
