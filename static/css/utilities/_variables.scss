@@ -1,0 +1,56 @@
+/*
+Usages:
+
+primary bg color for page colors.
+
+primary font color for font color on pages.
+
+title font1 color and title font2 color is for home page and projects page title and subtitle colors.
+
+icon filter is for changing the icon color to match the modes (dark or light).
+
+font size for the root element.
+
+*/
+
+// normal colors for light mode
+:root{
+    // Brown Shades:
+
+    // brownish and clayish gradient 
+    --primary_bg_color: radial-gradient(rgb(226, 189, 189), rgb(228, 186, 186));
+    // minimal brownish
+    --primary_font_color: #000;
+    
+    // nav section
+    --nav_bg_color: rgb(54, 27, 8);
+    --nav_font_color: rgb(241, 228, 228);
+
+    --nav_link_color: rgb(54, 13, 8);
+    --nav_link_bg_color: linear-gradient(to left top, rgb(245, 218, 215), rgb(224, 179, 174));
+    --nav_link_border_color: rgb(246, 225, 223);
+
+    // minimal brownish
+    --title_font1_color: rgb(59, 4, 4);
+    --title_font2_color: rgb(129, 62, 62);
+
+    --icon-filter: invert(2%);
+
+    --font_size: 62.5%;
+}
+
+// @media(prefers-color-scheme: dark){
+
+//     // when user preference is dark mode, then add class dark from the javascript
+//     :root.dark{
+//         --primary_bg_color: radial-gradient(rgb(39, 35, 35), rgb(44, 36, 36));
+        
+//         --primary_font_color: rgb(245, 229, 229);
+        
+//         // minimal brownish
+//         --title_font1_color: rgb(253, 186, 186);
+//         --title_font2_color: rgb(243, 203, 203);
+
+//         --icon-filter: invert(100%);
+//     }
+// }

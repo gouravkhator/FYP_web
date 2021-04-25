@@ -9,6 +9,7 @@ This is the final year project.
 * Atraya Bose
 * Aishik Roy
 
+---
 ## Project Usage
 
 ### Installation and Post-Installation Setup Guide
@@ -26,6 +27,16 @@ pipenv install
 Then, add all the follwing input files in the path 'app/inputs/'.
 * movies_metadata.csv
 * links_small.csv
+
+**Note: All the commands below should be run inside the created virtual environment.**
+
+---
+
+### Run Development Server
+
+```bash
+python main.py
+```
 
 ### Simple Recommender System
 

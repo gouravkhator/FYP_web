@@ -3,14 +3,15 @@
 # %matplotlib inline
 import pandas as pd
 import numpy as np
+import os
 from ast import literal_eval
 
-from app.utils.csv_manipulations import write_to_csv
+from app.utils.csv_manipulations import write_to_csv, get_inputpath_csv
 
 import warnings; warnings.simplefilter('ignore')
 
 def clean_movies_metadata():
-    movies_metadata_dataset = 'app/inputs/movies_metadata.csv'
+    movies_metadata_dataset = get_inputpath_csv(filename='movies_metadata.csv')
     md=pd.read_csv(movies_metadata_dataset)
 
     md['genres'] = md['genres'].fillna('[]').apply(literal_eval).apply(lambda x: [i['name'] for i in x] if isinstance(x, list) else [])
@@ -18,5 +19,5 @@ def clean_movies_metadata():
     md['year'] = pd.to_datetime(md['release_date'], errors='coerce').apply(lambda x: str(x).split('-')[0] if x != np.nan else np.nan)
 
     # writing movies metadata cleaned version
-    write_to_csv(df=md, filename='app/inputs/movies_metadata_cleaned.csv')
+    write_to_csv(df=md, filename=get_inputpath_csv('movies_metadata_cleaned.csv'))
     return md

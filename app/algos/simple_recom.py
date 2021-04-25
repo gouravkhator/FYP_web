@@ -9,7 +9,7 @@ try:
     from sklearn.metrics.pairwise import linear_kernel
 
     # my defined modules
-    from app.utils.csv_manipulations import write_to_csv
+    from app.utils.csv_manipulations import write_to_csv, get_outputpath_csv
     from app.utils.clean_dataframes import clean_movies_metadata
 
     import warnings; warnings.simplefilter('ignore')
@@ -77,5 +77,5 @@ genre_names = [
 ]
 
 for genre in genre_names:
-    write_to_csv(df = generate_top_list(genre), filename = 'app/outputs/simple_recom_'+genre.lower()+'.csv')
+    write_to_csv(df = generate_top_list(genre), filename = get_outputpath_csv('simple_recom_'+genre.lower()+'.csv'))
 
