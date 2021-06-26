@@ -1,0 +1,613 @@
+/*
+Usages:
+
+primary bg color for page colors.
+
+primary font color for font color on pages.
+
+secondary font color for home page sections, and other sections. secondary font color hovered for font color on hover or focus state.
+
+nav bg color is for background color in navbar. nav font color is for brand color. nav link color is for nav links font color. nav link bg color is for nav link background color. nav link border color is for nav link border color. nav link hover bg and font color is for font and bg colors for nav links on hover.
+
+movie item box width is the width of the box for movie card items in the movies list.
+
+title font1 color and title font2 color is for home page and projects page title and subtitle colors.
+
+font size for the root element.
+
+*/
+:root {
+  --primary_bg_color: rgb(202, 202, 202);
+  --primary_font_color: black;
+  --secondary_font_color: rgb(44, 97, 86);
+  --secondary_font_color_hovered: rgb(25, 58, 51);
+  --section_shadow: rgb(85, 85, 85);
+  --categories_bg_color: rgb(255, 217, 222);
+  --nav_bg_color: rgb(0, 0, 0);
+  --nav_font_color: rgb(241, 228, 228);
+  --nav_link_color: rgb(54, 13, 8);
+  --nav_link_bg_color: linear-gradient(to left top, rgb(245, 218, 215), rgb(224, 179, 174));
+  --nav_link_border_color: rgb(246, 225, 223);
+  --nav_link_hover_bg:radial-gradient(rgb(97, 97, 97), whitesmoke);
+  --nav_link_hover_font_color: rgb(247, 247, 253);
+  --movie_item_box_width: 250px;
+  --title_font1_color: rgb(59, 4, 4);
+  --title_font2_color: rgb(129, 62, 62);
+  --font_size: 62.5%;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  scroll-behavior: smooth;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+html {
+  font-size: var(--font_size);
+}
+
+body {
+  background: var(--primary_bg_color);
+  color: var(--primary_font_color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  font-size: 1.8rem;
+  width: 80vw;
+  margin: 30px auto;
+}
+
+.error {
+  color: crimson;
+}
+
+.success {
+  color: green;
+}
+
+#error-message, #success-message {
+  text-align: center;
+  margin: 10px 0px;
+}
+
+#filter-section {
+  font-size: 2rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+#filter-section #filter {
+  display: flex;
+  flex-direction: column;
+}
+#filter-section input[type=text] {
+  width: 150px;
+  font-size: 2rem;
+  border-radius: 5px;
+  padding: 12px 15px;
+  border: 2px solid crimson;
+  position: relative;
+  align-self: center;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 120px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: black;
+  margin: 15px;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.slider:hover {
+  opacity: 1;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: crimson;
+  cursor: pointer;
+}
+.slider:active::-webkit-slider-thumb {
+  width: 17px;
+  height: 17px;
+  background: black;
+}
+.slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: crimson;
+  cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  #filter-section #filter {
+    flex-direction: row;
+    align-items: center;
+  }
+  #filter-section input {
+    position: static;
+    padding: 7px 10px;
+    margin-left: 5px;
+  }
+}
+nav {
+  background-color: var(--nav_bg_color);
+  color: var(--nav_font_color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10vw;
+}
+nav #nav-logo {
+  font-size: 2.7rem;
+  font-weight: 600;
+}
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+nav ul li {
+  margin-right: 5px;
+  height: inherit;
+}
+nav ul li:last-child {
+  margin-right: 0px;
+}
+nav ul a {
+  display: block;
+  height: 100%;
+  color: var(--nav_link_color);
+  background: var(--nav_link_bg_color);
+  padding: 10px 15px;
+  border-top: 1.5px solid var(--nav_link_border_color);
+  border-left: 1.5px solid var(--nav_link_border_color);
+  border-radius: 20px;
+  font-size: 1.7rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  will-change: color, opacity, font-weight;
+}
+nav ul a:hover, nav ul a:focus, nav ul a:active {
+  background: var(--nav_link_hover_bg);
+  color: var(--nav_link_hover_font_color);
+  font-weight: bolder;
+  text-shadow: 0px 5px 5px #341858;
+  opacity: 0.9;
+}
+nav a#github_icon_link img#github_icon {
+  width: 17px;
+  height: 17px;
+  filter: invert(90%);
+}
+nav a#github_icon_link:hover img#github_icon, nav a#github_icon_link:focus img#github_icon, nav a#github_icon_link:active img#github_icon {
+  filter: invert(5%);
+}
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    padding: 10px;
+    align-items: start;
+  }
+
+  nav ul {
+    margin-top: 10px;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav li {
+    margin-bottom: 10px;
+  }
+
+  nav li a {
+    width: 100%;
+  }
+
+  nav a#github_icon_link::before {
+    position: relative;
+    content: "Github ";
+    bottom: 3px;
+  }
+}
+section#main-page-category {
+  --category_width: 300px;
+  padding: 20px 0 35px;
+}
+section#main-page-category #categories-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--category_width), 1fr));
+  gap: 20px;
+  margin: 20px 0;
+  font-size: 3rem;
+}
+section#main-page-category #categories-list a {
+  font-size: 2rem;
+  color: var(--secondary_font_color);
+}
+section#main-page-category #categories-list a:hover, section#main-page-category #categories-list a:focus {
+  color: var(--secondary_font_color_hovered);
+}
+section#main-page-category article.category-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border: 1.5px solid #28252c;
+  border-radius: 10px;
+  box-shadow: 2px 10px 10px var(--section_shadow);
+  background: var(--categories_bg_color);
+  padding-bottom: 15px;
+}
+section#main-page-category article.category-card h3 {
+  max-width: 100%;
+  margin: 0 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+section#main-page-category article.category-card:hover img, section#main-page-category article.category-card:focus img, section#main-page-category article.category-card:active img {
+  transform: scale(1.05, 1.05);
+}
+section#main-page-category article.category-card img {
+  width: 100%;
+  max-height: 500px;
+  height: 50vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  --img_border: 2px solid rgb(41, 41, 41);
+  border-bottom: var(--img_border);
+  border-left: var(--img_border);
+  border-right: var(--img_border);
+  border-radius: 7px;
+  box-shadow: 2px 5px 10px var(--section_shadow);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@media (max-width: 400px) {
+  section#main-page-category {
+    --category_width: 250px;
+  }
+}
+section#metadata-recom-page {
+  text-align: center;
+}
+section#metadata-recom-page form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0px;
+}
+section#metadata-recom-page select {
+  height: 35px;
+  cursor: pointer;
+  border: 2px solid crimson;
+  font-size: 16px;
+}
+section#metadata-recom-page .search-box {
+  flex-grow: 1;
+  max-width: 65vw;
+  padding: 12px 20px;
+  font-size: 2rem;
+  font-weight: 600;
+  font-style: italic;
+  box-sizing: border-box;
+  border: 2px solid crimson;
+  border-radius: 4px;
+}
+section#metadata-recom-page .search-btn {
+  transition-duration: 0.4s;
+  cursor: pointer;
+  padding: 0px 12px;
+  border: none;
+  background: none;
+}
+section#metadata-recom-page .search-btn:hover img {
+  -webkit-animation-name: search;
+          animation-name: search;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+}
+@-webkit-keyframes search {
+  0% {
+    transform: rotate(30deg);
+  }
+  10% {
+    transform: rotate(-30deg);
+  }
+  20% {
+    transform: rotate(30deg);
+  }
+  30% {
+    transform: rotate(-30deg);
+  }
+  40% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+  60% {
+    transform: rotate(30deg);
+  }
+  70% {
+    transform: rotate(-30deg);
+  }
+  80% {
+    transform: rotate(30deg);
+  }
+  9% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(30deg);
+  }
+}
+@keyframes search {
+  0% {
+    transform: rotate(30deg);
+  }
+  10% {
+    transform: rotate(-30deg);
+  }
+  20% {
+    transform: rotate(30deg);
+  }
+  30% {
+    transform: rotate(-30deg);
+  }
+  40% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+  60% {
+    transform: rotate(30deg);
+  }
+  70% {
+    transform: rotate(-30deg);
+  }
+  80% {
+    transform: rotate(30deg);
+  }
+  9% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(30deg);
+  }
+}
+section#metadata-recom-page article#metadata-movies-section {
+  margin: 30px 0px;
+}
+section#metadata-recom-page #movies-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--movie_item_box_width), 1fr));
+  gap: 15px;
+  margin: 20px 5px;
+}
+section#metadata-recom-page #movie-item-card {
+  height: 100%;
+  width: var(--movie_item_box_width);
+  margin: 0 auto;
+  border-radius: 5px;
+  border-color: crimson;
+  display: grid;
+  grid-template-areas: "movie_title" "movie_poster" "other_info";
+}
+section#metadata-recom-page #movie-item-card #movie-title {
+  max-height: 30px;
+  height: 30px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: inherit;
+  overflow-x: hidden;
+  grid-area: movie_title;
+}
+section#metadata-recom-page #movie-item-card #movie-poster {
+  grid-area: movie_poster;
+}
+section#metadata-recom-page #movie-item-card #other-info {
+  grid-area: other_info;
+}
+section#metadata-recom-page #movie-item-card img#poster {
+  margin: 10px;
+  padding: 5px;
+  border-radius: 15px;
+}
+section#metadata-recom-page #movie-item-card img#poster:hover {
+  box-shadow: 0 0 2px 1px rgba(220, 20, 60, 0.8);
+}
+
+section#hybrid-recom-page {
+  text-align: center;
+}
+section#hybrid-recom-page .account_btn {
+  width: 300px;
+  background-color: #191919;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 15px;
+  border: 1px solid crimson;
+}
+section#hybrid-recom-page .account_btn :hover {
+  color: #ffa7b9;
+}
+section#hybrid-recom-page form {
+  margin: 20px 0px;
+}
+section#hybrid-recom-page .save_button, section#hybrid-recom-page .logout_button {
+  border: none;
+}
+section#hybrid-recom-page .save_button :hover, section#hybrid-recom-page .logout_button :hover {
+  cursor: pointer;
+}
+section#hybrid-recom-page .save_button {
+  background-color: var(--primary_bg_color);
+}
+section#hybrid-recom-page .save_button :hover {
+  color: crimson;
+}
+section#hybrid-recom-page .login_button {
+  padding: 10px 20px;
+  background-color: #eee;
+  color: #681b03;
+  font-size: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: bold;
+  border-bottom: 5px solid #3d1414;
+  border-top: 2px solid #191919;
+  border-right: 2px solid #191919;
+  border-left: 2px solid #191919;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+section#hybrid-recom-page .login_button:hover, section#hybrid-recom-page .login_button:focus, section#hybrid-recom-page .login_button:active {
+  box-shadow: 0 10px 5px rgba(0, 0, 0, 0.4);
+}
+section#hybrid-recom-page .logout_button {
+  background-color: #84e7aa;
+}
+section#hybrid-recom-page .logout_button :hover {
+  color: #5f085f;
+}
+section#hybrid-recom-page .getrecom_button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+section#hybrid-recom-page .getrecom_tooltiptext {
+  opacity: 0;
+  visibility: hidden;
+  width: 200px;
+  height: 20px;
+  background-color: #191919;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+}
+section#hybrid-recom-page .getrecom_tooltip:hover .getrecom_tooltiptext {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+  visibility: visible;
+}
+section#hybrid-recom-page .account_popup {
+  margin: auto;
+  border: 1px solid crimson;
+  border-top: none;
+  width: 300px;
+  position: relative;
+  background-color: #84e7aa;
+  padding: 15px 0px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+}
+section#hybrid-recom-page #user-saved-movies, section#hybrid-recom-page #user-saved-movies ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+}
+section#hybrid-recom-page input[type=text] {
+  border: 2px solid crimson;
+  height: 35px;
+  font-size: inherit;
+  margin: 5px;
+}
+section#hybrid-recom-page input[type=number] {
+  border: 2px solid #191919;
+  height: 35px;
+  font-size: inherit;
+  margin: 5px;
+}
+section#hybrid-recom-page select {
+  height: 35px;
+  cursor: pointer;
+  border: 2px solid crimson;
+  font-size: 16px;
+}
+section#hybrid-recom-page #movies-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--movie_item_box_width), 1fr));
+  gap: 15px;
+  margin: 20px 5px;
+}
+section#hybrid-recom-page #movie-item-card {
+  height: 100%;
+  width: var(--movie_item_box_width);
+  margin: 0 auto;
+  border-radius: 5px;
+  border-color: crimson;
+  display: grid;
+  grid-template-areas: "movie_title" "movie_poster" "other_info";
+}
+section#hybrid-recom-page #movie-item-card #movie-title {
+  max-height: 30px;
+  height: 30px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: inherit;
+  overflow-x: hidden;
+  grid-area: movie_title;
+}
+section#hybrid-recom-page #movie-item-card #movie-poster {
+  grid-area: movie_poster;
+}
+section#hybrid-recom-page #movie-item-card #other-info {
+  grid-area: other_info;
+}
+section#hybrid-recom-page #movie-item-card img#poster {
+  margin: 10px;
+  padding: 5px;
+  border-radius: 15px;
+}
+section#hybrid-recom-page #movie-item-card img#poster:hover {
+  box-shadow: 0 0 2px 1px rgba(220, 20, 60, 0.8);
+}
+
+@media (max-width: 450px) {
+  :root {
+    --font_size: 59%;
+  }
+}/*# sourceMappingURL=main.css.map */

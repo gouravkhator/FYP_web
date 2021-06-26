@@ -1,0 +1,45 @@
+#movies-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--movie_item_box_width), 1fr));
+    gap: 15px;
+    margin: 20px 5px;
+}
+
+#movie-item-card{
+    height: 100%;
+    width: var(--movie_item_box_width);
+    margin: 0 auto; // center inside the grid cell
+    border-radius: 5px;
+    border-color: crimson;
+    display: grid;
+    grid-template-areas: 'movie_title' 'movie_poster' 'other_info';
+
+    #movie-title{
+        $titleHeight: 30px;
+        max-height: $titleHeight;
+        height: $titleHeight;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: inherit;
+        overflow-x: hidden;
+        grid-area: movie_title;
+    }
+
+    #movie-poster{
+        grid-area: movie_poster;
+    }
+
+    #other-info{
+        grid-area: other_info;
+    }
+
+    img#poster{
+        margin: 10px;
+        padding: 5px;
+        border-radius: 15px;
+    }
+
+    img#poster:hover{
+        box-shadow: 0 0 2px 1px rgba(220, 20, 60, 0.8);
+    }
+}

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Hybrid Recommendation
+{% endblock %}
+
+{% block content %}
+<section id="hybrid-recom-page">
+    <h2>Hybrid Recommendation</h2>
+
+    <div>
+        {% if 'google_id' not in session %}
+        <a href="/login">
+            <button class="login_button">
+			<img src="https://imgr.search.brave.com/lvjn4gid3o09wHO-HHDe8fZ7MtzhH64R_iu-8k3pQgQ/fit/1200/1200/no/1/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi81LzUzL0dv/b2dsZV8lMjJHJTIy/X0xvZ28uc3ZnLzEy/MDBweC1Hb29nbGVf/JTIyRyUyMl9Mb2dv/LnN2Zy5wbmc" alt="Google Logo" width="17" height="17"/> Login/Sign Up</button>
+        </a>
+        {% else %}
+
+        <button onclick="viewAccountPopUp()" class="account_btn">
+            <span>
+                <i class="material-icons account">person</i>
+                <h3>{{session['name']}}</h3>
+            </span>
+        </button>
+
+        <div class="account_popup" id="accountPopUp">
+            <div><p>{{session['email']}}</p></div>
+            <div>
+                <a href="/logout">
+                    <button class="logout_button">
+                        <span class="material-icons">logout</span>
+                    </button>
+                </a>
+            </div>
+            
+            {% if user_movie_titles %}
+            <div id="user-saved-movies">
+                <h4>Your Saved Movies & Ratings</h4>
+                <ul>
+                    {% for movie_title in user_movie_titles %}
+                        <li>
+                            <p>{{movie_title}} : {{user_movie_ratings[loop.index0]}}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+        <form action="/recommend/hybrid" method="post" id="preferences-form">
+            <h2 style="margin-top: 10px;">Your Preferences</h2>
+            <h3>Enter your 5 favourite movies for us to do hybrid recommendation...</h3>
+            {% for i in range(1,6) %}
+                <div class="hybrid-movie-question">
+                    <label for="movie-title-{{i}}">Movie {{i}}</label>
+                    <input type="text" name="movie-title-{{i}}" id="movie-title-{{i}}">
+                    <input type="number" name="movie-rating-{{i}}" id="movie-rating-{{i}}" value="4.5" step="0.1" max="5" min="0">
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="save_button">
+                <span class="material-icons" style="font-size:30px;">save</span>
+            </button>
+        </form>
+
+        <form action="/recommend/hybrid" method="get" id="hybrid-recom-form">
+            {% include 'movie_filters_template.html' %}
+
+            <span class="getrecom_tooltip">
+                <button type="submit" class="getrecom_button">
+                    <img src="{{ url_for('static', filename='images/GetRecom.png') }}" id="getrecom" height="60px">
+                    <br><span class="getrecom_tooltiptext">Get Recommendations</span>
+                </button>
+            </span>
+        </form>
+
+        <!-- For error message, for wrong inputs in the form/filters -->
+        <h3 id="output-message" class="error">
+        </h3>
+
+        <article id="hybrid-movies-section">
+            {% if title_list %}
+            
+            <h2>{{title_list.__len__()}} {{published_date_filter}} Recommended Movies</h2>
+
+            {% include 'movies_list_template.html' %}
+
+            <h4>**The above list have been sorted by genre, director, cast and popularity</h4>
+            <h4>Note: The list may contain less movies than expected, due to only showing movies based on your taste.
+            </h4>
+
+            {% else %}
+
+            <h3>Save your favourite movie preferences, for better hybrid recommendation</h3>
+
+            {% endif %}
+        </article>
+
+        {% endif %}
+    </div>
+    
+</section>
+
+{% endblock %}
+
+{% block script %}
+
+<script src="{{ url_for('static', filename='js/hybrid_based_script.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+<div id="filter-section">
+
+    {% if genres_list %}
+    <!-- If genres_list is not provided, meaning it was not used in page also, so remove this filter if not provided -->
+    <div id="filter">
+        <label for="genre">Genre:</label>
+        <select name="genre" id="top-genre-select">
+            <option value="" {% if not genre %} selected {% endif %}>Select one genre</option>
+
+            {% for g in genres_list %}
+
+            <option value="{{g}}" {% if genre and genre==g %} selected {% endif %}>
+                {{g}}
+            </option>
+
+            {% endfor %}
+        </select>
+    </div>
+    {% endif %}
+
+    <div id="filter">
+        <label for="duration-filter">Movie Duration:</label>
+
+        <select name="duration-filter" id="duration-select">
+            <option value="no-filter" {% if not duration %} selected {% endif %}>Any duration</option>
+
+            {% for d in duration_filters_list %}
+
+            <option value="{{d}}" {% if duration and duration==d %} selected {% endif %}>
+                {{d}}
+            </option>
+
+            {% endfor %}
+        </select>
+    </div>
+
+    <div id="filter">
+        <label for="top-n">
+            N: <span id="top-n-label"></span>
+        </label>
+        <input type="range" name="top-n" min="1" max="20" step="1" value="{{top_n or 10}}" class="slider"
+            id="top-n-input">
+    </div>
+
+    <div id="filter">
+        <label for="published-date-filter">Published Date:</label>
+        <select name="published-date-filter" id="published-date-input">
+
+            <option value="Relevant" {% if published_date_filter and published_date_filter=='Relevant' %} selected {%
+                endif %}>
+                Relevant
+            </option>
+
+            <option value="Newest" {% if published_date_filter and published_date_filter=='Newest' %} selected {% endif
+                %}>Newest</option>
+
+            <option value="Mid" {% if published_date_filter and published_date_filter=='Mid' %} selected {% endif %}>Mid
+            </option>
+
+            <option value="Oldest" {% if published_date_filter and published_date_filter=='Oldest' %} selected {% endif
+                %}>Oldest</option>
+
+        </select>
+    </div>
+
+</div>

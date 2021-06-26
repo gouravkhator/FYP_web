@@ -1,0 +1,10 @@
+.vscode/
+__pycache__/
+*.pyc
+
+*.csv
+*.npy
+*.npz
+*.zip
+
+key/

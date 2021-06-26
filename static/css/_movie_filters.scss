@@ -1,0 +1,83 @@
+$inputBorder: 2px solid crimson;
+
+#filter-section {
+    font-size: 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    #filter {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input[type="text"] {
+        width: 150px;
+        font-size: 2rem;
+        border-radius: 5px;
+        padding: 12px 15px;
+        border: $inputBorder;
+        position: relative;
+        align-self: center;
+    }
+}
+
+// slider on range inputs
+.slider {
+    -webkit-appearance: none;
+    width: 120px;
+    height: 5px;
+    border-radius: 5px;
+    background-color: black;
+    margin: 15px;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: crimson;
+      cursor: pointer;
+    }
+
+    &:active::-webkit-slider-thumb {
+      width: 17px;
+      height: 17px;
+      background: black;
+    }
+
+    &::-moz-range-thumb {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: crimson;
+      cursor: pointer;
+    }
+}
+
+@media (max-width: 500px) {
+    #filter-section {
+        #filter {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        input {
+            position: static;
+            padding: 7px 10px;
+            margin-left: 5px;
+        }
+    }
+}

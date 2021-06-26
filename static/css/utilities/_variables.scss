@@ -1,0 +1,67 @@
+/*
+Usages:
+
+primary bg color for page colors.
+
+primary font color for font color on pages.
+
+secondary font color for home page sections, and other sections. secondary font color hovered for font color on hover or focus state.
+
+nav bg color is for background color in navbar. nav font color is for brand color. nav link color is for nav links font color. nav link bg color is for nav link background color. nav link border color is for nav link border color. nav link hover bg and font color is for font and bg colors for nav links on hover.
+
+movie item box width is the width of the box for movie card items in the movies list.
+
+title font1 color and title font2 color is for home page and projects page title and subtitle colors.
+
+font size for the root element.
+
+*/
+
+// normal colors for light mode
+:root{
+    --primary_bg_color: rgb(202, 202, 202);
+    
+    --primary_font_color: black;
+
+    --secondary_font_color: rgb(44, 97, 86);
+    --secondary_font_color_hovered: rgb(25, 58, 51);
+
+    // home page section
+    --section_shadow: rgb(85, 85, 85);
+    --categories_bg_color: rgb(255, 217, 222);
+
+    // nav section
+    --nav_bg_color: rgb(0, 0, 0);
+    --nav_font_color: rgb(241, 228, 228);
+
+    --nav_link_color: rgb(54, 13, 8);
+    --nav_link_bg_color: linear-gradient(to left top, rgb(245, 218, 215), rgb(224, 179, 174));
+    --nav_link_border_color: rgb(246, 225, 223);
+
+    --nav_link_hover_bg:radial-gradient(rgb(97, 97, 97), whitesmoke);
+    --nav_link_hover_font_color: rgb(247, 247, 253);
+
+    // movies list sections
+    --movie_item_box_width: 250px;
+
+    // minimal brownish
+    --title_font1_color: rgb(59, 4, 4);
+    --title_font2_color: rgb(129, 62, 62);
+
+    --font_size: 62.5%;
+}
+
+// @media(prefers-color-scheme: dark){
+
+//     // when user preference is dark mode, then add class dark from the javascript
+//     :root.dark{
+//         --primary_bg_color: radial-gradient(rgb(39, 35, 35), rgb(44, 36, 36));
+        
+//         --primary_font_color: rgb(245, 229, 229);
+        
+//         // minimal brownish
+//         --title_font1_color: rgb(253, 186, 186);
+//         --title_font2_color: rgb(243, 203, 203);
+
+//     }
+// }

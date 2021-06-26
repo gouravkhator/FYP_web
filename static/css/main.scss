@@ -1,0 +1,67 @@
+@import "./utilities/variables";
+
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+
+    scroll-behavior: smooth; // so that on traversing to any section via links, we can get smooth automatic traversal
+    width: 100%;
+    height: fit-content;
+}
+
+html{
+    font-size: var(--font_size);
+    // this is set in html element or root element so that we can use rem which works relative to the root element only
+    //in em, the font-size works relative to its parent element
+}
+
+body{
+    background: var(--primary_bg_color);
+    color: var(--primary_font_color);
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+main{
+    font-size: 1.8rem;
+    width: 80vw;
+    margin: 30px auto;
+}
+
+.error{
+    color: crimson;
+}
+
+.success{
+    color: green;
+}
+
+#error-message, #success-message{
+    text-align: center;
+    margin: 10px 0px;
+}
+
+// global movie filters styles
+@import "./movie_filters";
+
+@import "./nav";
+@import "./home";
+@import "./metadata_based_page";
+@import "./hybrid_based_page";
+
+@media(max-width: 450px){
+    :root{
+        --font_size: 59%;
+    }
+}

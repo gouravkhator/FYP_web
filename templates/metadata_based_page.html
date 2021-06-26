@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Content Based Recommendation
+{% endblock %}
+
+{% block content %}
+
+<section id="metadata-recom-page">
+    <h2>Content Metadata Based Recommendation</h2>
+
+    <form action="/recommend/content-based" method="POST">
+        <input class="search-box" type="text" placeholder="Enter your favourite movie" name="searched-movie"
+            id="search-movie-input" value="{{ searched_movie or '' }}">
+        <button type="submit" class="search-btn">
+            <img src="{{ url_for('static', filename='images/search_icon.png') }}" height="35px">
+        </button>
+    </form>
+
+    {% include 'movie_filters_template.html' %}
+
+    <!-- For error message, for wrong inputs in the form/filters -->
+    <h3 id="output-message" class="error">
+    </h3>
+
+    {% if searched_movie_info %}
+    <br>
+    <h2>Your Searched Movie</h2>
+    <div id="movie-item-card" title="{{searched_movie_info['title']}}">
+        <h3 id="movie-title">{{searched_movie_info["title"]}}</h3>
+        <a href="https://www.imdb.com/title/{{searched_movie_info['imdb_id']}}" target="_blank" id="movie-poster">
+            <img id="poster"
+                src="https://web.archive.org/web/20150327185105/http://image.tmdb.org/t/p/w92{{searched_movie_info['poster_path']}}"
+                height="200px" onerror="this.src = `{{url_for('static', filename='images/poster_fallback.png')}}`">
+        </a>
+        <div id="other-info">
+            <!-- if Searched movie has NaT, then tell N/A -->
+            {% if searched_movie_info["year"] == "NaT" %}
+            <p>Publish Date: N/A</p>
+            {% else %}
+            <p>Published in {{ searched_movie_info["year"] }}</p>
+            {% endif %}
+            <!-- <p>Total Votes : {{searched_movie_info["vote_count"]}}</p> -->
+
+            {% if searched_movie_info["runtime"] == "NaN" %}
+            <p>Duration: N/A</p>
+            {% else %}
+            <p>Duration: {{'%.0f' | format(searched_movie_info["runtime"] | float)}} Minutes</p>
+            {% endif %}
+            
+            <p id="movie-rating">Rating : {{'%.0f' | format(searched_movie_info["vote_average"] | float)}}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <article id="metadata-movies-section">
+        {% if title_list %}
+
+        {% if genre %}
+
+        <h2>Top {{title_list.__len__()}} {{published_date_filter.lower()}} {{genre}} movies</h2>
+
+        {% else %}
+
+        <h2>{{title_list.__len__()}} {{published_date_filter}} Recommended Movies based on Similar Metadata</h2>
+
+        {% endif %}
+
+        {% include 'movies_list_template.html' %}
+
+        <h4>**The above list have been sorted by genre, director, cast and popularity</h4>
+        <h4>Note: The list may contain less movies than expected, due to only showing movies based on your taste.
+        </h4>
+
+        {% else %}
+
+        <h3>Search for your favourite movie or your favourite genre, and we show you best recommended options for your
+            next movie-trip</h3>
+
+        {% endif %}
+    </article>
+</section>
+
+{% endblock content %}
+
+{% block script %}
+
+<script src="{{ url_for('static', filename='js/metadata_based_script.js') }}"></script>
+
+{% endblock %}
