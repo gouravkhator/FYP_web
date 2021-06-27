@@ -131,7 +131,7 @@ def generate_smd_metadata_recom():
 
         smd['cast'] = smd['cast'].apply(lambda x: [str.lower(i.replace(" ", "")) for i in x])
         smd['director'] = smd['director'].astype('str').apply(lambda x: str.lower(x.replace(" ", "")))
-        # ! ISSUE: Director should have less focus for metadata based recom
+
         smd['director'] = smd['director'].apply(lambda x: [x,x])
 
         s = smd.apply(lambda x: pd.Series(x['keywords']),axis=1).stack().reset_index(level=1, drop=True)

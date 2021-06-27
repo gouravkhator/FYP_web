@@ -9,95 +9,66 @@ nav{
     align-items: center;
 
     padding: 10px 10vw;
-    
+
     #nav-logo{
         font-size: 2.7rem;
         font-weight: 600;
     }
 
-    ul{
-        display: flex;
-        justify-content: space-evenly;
+    .navbar{
+        color: crimson;
     }
 
-    ul li{
-        margin-right: 5px;
-        height: inherit;
-    }
-
-    ul li:last-child{
-        margin-right: 0px;
-    }
-
-    ul a{
+    .topnav {
+        overflow: hidden;
+        background-color: var(--primary_font_color);
+        font-weight: bold;
+      }
+      
+    .topnav a {
+        float: left;
         display: block;
-        height: 100%;
-
-        color: var(--nav_link_color);
-        background: var(--nav_link_bg_color);
-        padding: 10px 15px;
-        border-top: 1.5px solid var(--nav_link_border_color);
-        border-left: 1.5px solid var(--nav_link_border_color);
-
-        border-radius: 20px;
-        font-size: 1.7rem;
-        font-weight: 600;
+        color: crimson;
         text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      
+    .topnav a:hover {
+        background-color: var(--primary_bg_color);
+        color: var(--primary_font_color);
+      }
+      
+    .topnav a.active {
+        background-color: #191919;
+        color: white;
+      }
 
-        transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-        will-change: color, opacity, font-weight;
-
-        &:hover, &:focus, &:active{
-            background: var(--nav_link_hover_bg);
-            color: var(--nav_link_hover_font_color);
-            font-weight: bolder;
-
-            text-shadow: $nav_shadow_color;
-            opacity: 0.9;
-        }
+    ul li {
+        display: inline;
     }
 
-    a#github_icon_link{
-        img#github_icon{
-            $icon_dimension: 17px;
-            width: $icon_dimension;
-            height: $icon_dimension;
-            filter: invert(90%);
-        }
-        &:hover, &:focus, &:active{
-            img#github_icon{
-                filter: invert(5%);
-            }
-        }
-    }
 }
 
 @media(max-width: 600px){
-    nav{
-        flex-direction: column;
-        padding: 10px;
-        align-items: start;
-    }
+  nav{
+      flex-direction: column;
+      padding: 10px;
+      align-items: start;
+  }
 
-    nav ul{
-        margin-top: 10px;
-        flex-direction: column;
-        width: 100%;
-    }
+  nav ul{
+      margin-top: 10px;
+      flex-direction: column;
+      width: 100%;
+  }
 
-    nav li{
-        margin-bottom: 10px;
-    }
+  nav li{
+      margin-bottom: 10px;
+  }
 
-    nav li a{
-        width: 100%;
-    }
-
-    nav a#github_icon_link{
-        &::before{
-            position: relative;
-            content: 'Github ';
-            bottom: 3px;
-        }
-    }
+  nav li a{
+      width: 100%;
+  }
 }

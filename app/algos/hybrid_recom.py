@@ -137,7 +137,6 @@ def recommend_hybrid(user_id, top_n = 10, published_date_filter = "Relevant", du
         current_sim_scores = list(enumerate(cosine_matrix[int(idx)]))
         sim_scores.extend(current_sim_scores)
         
-        
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
         '''
         Top 150 similar movies based on user saved movies
@@ -146,6 +145,10 @@ def recommend_hybrid(user_id, top_n = 10, published_date_filter = "Relevant", du
     
     movie_indices.extend([i[0] for i in sim_scores])
     result_movies = metadata_smd.iloc[movie_indices][['title', 'vote_count', 'vote_average', 'year', 'id', 'popularity', 'poster_path', 'imdb_id', 'runtime']]
+
+    # removing any user saved movies from the result list 
+    for movie in movie_title_list:
+        result_movies = result_movies[result_movies['title'] != movie.strip()]
 
     est_list = [] # estimated ratings list
 
@@ -161,8 +164,6 @@ def recommend_hybrid(user_id, top_n = 10, published_date_filter = "Relevant", du
             # TODO: can append series first element
     
     result_movies['est'] = est_list
-
-    # TODO: remove movies with 0 vote_average
 
     # removed duplicate movies by the movie "id"
     result_movies.drop_duplicates(subset='id', keep='first', inplace=True)

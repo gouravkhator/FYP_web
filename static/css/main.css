@@ -169,46 +169,33 @@ nav #nav-logo {
   font-size: 2.7rem;
   font-weight: 600;
 }
-nav ul {
-  display: flex;
-  justify-content: space-evenly;
+nav .navbar {
+  color: crimson;
+}
+nav .topnav {
+  overflow: hidden;
+  background-color: var(--primary_font_color);
+  font-weight: bold;
+}
+nav .topnav a {
+  float: left;
+  display: block;
+  color: crimson;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+nav .topnav a:hover {
+  background-color: var(--primary_bg_color);
+  color: var(--primary_font_color);
+}
+nav .topnav a.active {
+  background-color: #191919;
+  color: white;
 }
 nav ul li {
-  margin-right: 5px;
-  height: inherit;
-}
-nav ul li:last-child {
-  margin-right: 0px;
-}
-nav ul a {
-  display: block;
-  height: 100%;
-  color: var(--nav_link_color);
-  background: var(--nav_link_bg_color);
-  padding: 10px 15px;
-  border-top: 1.5px solid var(--nav_link_border_color);
-  border-left: 1.5px solid var(--nav_link_border_color);
-  border-radius: 20px;
-  font-size: 1.7rem;
-  font-weight: 600;
-  text-align: center;
-  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-  will-change: color, opacity, font-weight;
-}
-nav ul a:hover, nav ul a:focus, nav ul a:active {
-  background: var(--nav_link_hover_bg);
-  color: var(--nav_link_hover_font_color);
-  font-weight: bolder;
-  text-shadow: 0px 5px 5px #341858;
-  opacity: 0.9;
-}
-nav a#github_icon_link img#github_icon {
-  width: 17px;
-  height: 17px;
-  filter: invert(90%);
-}
-nav a#github_icon_link:hover img#github_icon, nav a#github_icon_link:focus img#github_icon, nav a#github_icon_link:active img#github_icon {
-  filter: invert(5%);
+  display: inline;
 }
 
 @media (max-width: 600px) {
@@ -230,12 +217,6 @@ nav a#github_icon_link:hover img#github_icon, nav a#github_icon_link:focus img#g
 
   nav li a {
     width: 100%;
-  }
-
-  nav a#github_icon_link::before {
-    position: relative;
-    content: "Github ";
-    bottom: 3px;
   }
 }
 section#main-page-category {
