@@ -25,15 +25,6 @@ Then clone the repo. Inside the cloned directory, run the following:
 pipenv install
 ```
 
-Then, add all the follwing input files in the path 'app/inputs/'.
-
-- movies_metadata.csv
-- links_small.csv
-- links.csv
-- credits.csv
-- keywords.csv
-- ratings_small.csv
-
 **Note: All the commands below should be run inside the created virtual environment.**
 
 ### Activate the Virtual Environment
@@ -41,6 +32,22 @@ Then, add all the follwing input files in the path 'app/inputs/'.
 ```bash
 pipenv shell
 ```
+
+---
+
+### Files required for running the main webapp and CLI
+
+* Keep the Firebase client secret and admin secret files:
+  - key/client_secret_oauth.json
+  - key/fb_admin_config.json
+* Keep the listed **input** csv files in the path `app/inputs/`:
+  - movies_metadata.csv
+  - links.csv
+  - credits.csv
+  - keywords.csv
+  - ratings_small.csv
+* Generate the **output** files by running the below scripts for each recommendation algorithms
+* Keep the cosine similarity matrix in the path `app/outputs/cosine_matrix.npy`
 
 ---
 
