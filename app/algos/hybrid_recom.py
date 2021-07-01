@@ -8,13 +8,13 @@ try:
     from surprise import Reader, Dataset, SVD
 
     # my defined modules
-    from app.utils.global_variables import get_inputpath_csv, get_outputpath_csv, add_movie_filters_cli
+    from app.utils.global_variables import get_inputpath_csv, get_outputpath_csv, add_movie_filters_cli, handle_internal_error
     from app.utils.movie_filters import add_published_date_filter, add_duration_filter, remove_zero_field_values
     from app.utils.clean_dataframes import generate_smd_metadata_recom, get_cosine_sim_matrix
 
     import warnings; warnings.simplefilter('ignore')
 except Exception as e:
-    print('Some modules could not be imported, error: ',e)
+    print('Some modules could not be imported')
     exit(1)
 
 def save_user_movies_tocsv(user_id, user_movies, user_movie_ratings):
@@ -44,7 +44,7 @@ def save_user_movies_tocsv(user_id, user_movies, user_movie_ratings):
     final_movies_len = len(final_movie_ids)
     if final_movies_len == 0:
         # if no movie titles had their names in the dataset
-        raise Exception("Provided movies were already saved before or was not found in our dataset. Provide new valid movies..")
+        raise Exception("Provided movies were already saved before or was not found in our dataset. Provide new valid movies..", True)
 
     with open(ratings_filepath, 'a+', newline='') as write_obj:
         csv_writer = csv.writer(write_obj)
@@ -63,7 +63,7 @@ def get_user_movie_titles(user_id):
     user_movie_ids, user_ratings = saved_movie_ratings["movieId"].tolist(), saved_movie_ratings["rating"].tolist()
 
     if len(user_movie_ids) == 0:
-        return []
+        return [], []
 
     metadata_smd = pd.read_csv(metadata_smd_filepath, index_col='Id')
     movies_list_temp = pd.Series(metadata_smd['title'].tolist(), index=metadata_smd["id"])
@@ -200,4 +200,4 @@ if __name__=="__main__":
         else:
             print("No movies found as per your taste...")
     except Exception as e:
-        print("Error: ",e)
+        print("Error: \n", handle_internal_error(e))

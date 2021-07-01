@@ -1,17 +1,16 @@
 # imports done in try except block to handle any import exception
-
 try:
     # pre-built modules
     import pandas as pd
     import os
 
     # my defined modules
-    from app.utils.global_variables import get_outputpath_csv, get_genres_list
+    from app.utils.global_variables import get_outputpath_csv, get_genres_list, handle_internal_error
     from app.utils.clean_dataframes import clean_movies_metadata
 
     import warnings; warnings.simplefilter('ignore')
 except Exception as e:
-    print('Some modules could not be imported, error: ',e)
+    print('Some modules could not be imported')
     exit(1)
     
 """Simple Recommender System"""
@@ -23,7 +22,7 @@ try:
     # clean movies metadata
     movies_metadata_cleaned = clean_movies_metadata()
 except Exception as e:
-    print('Error caused: ', e.args[0])
+    print(handle_internal_error(e))
     exit(1)
 
 """

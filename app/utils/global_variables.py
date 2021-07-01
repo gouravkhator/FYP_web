@@ -39,7 +39,7 @@ def add_movie_filters_cli():
         elif duration_choice == 0:
             duration_filter = "no-filter"
     except Exception as e:
-        print("Error: ", e)
+        print("Error: \n", e)
     
     return (top_n, published_date_filter, duration_filter)
 
@@ -54,3 +54,14 @@ def get_searched_movie_info(searched_movie_title, metadata_smd):
         return movie_info
     
     return None
+
+def handle_internal_error(e):
+    try:
+        '''
+        if the exception was thrown as:
+        raise Exception("Error message", True) 
+        here, True signify its a internal error raised by our app, and if True is not there, its the error raised by python
+        '''
+        return e.args[0] if len(e.args)==2 and e.args[1]==True else "Some internal error occurred..."
+    except:
+        return "Some internal error occurred..."

@@ -7,7 +7,8 @@ try:
     from bs4 import BeautifulSoup
     import pandas as pd
 except Exception as e:
-    print("Some modules could not be imported. \nError:",e)
+    print("Some modules could not be imported")
+    exit(1)
 
 def get_free_proxies():
     ua = UserAgent()

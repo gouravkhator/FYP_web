@@ -14,7 +14,7 @@ from firebase_admin_methods import create_user
 from app.model_render.simple_recom_render import render_simple_recommender
 from app.algos.metadata_recom import get_metadata_based_recom
 from app.algos.hybrid_recom import recommend_hybrid, save_user_movies_tocsv, get_user_movie_titles
-from app.utils.global_variables import get_duration_filters_list, get_genres_list
+from app.utils.global_variables import get_duration_filters_list, get_genres_list, handle_internal_error
 
 app = Flask(__name__)
 
@@ -53,7 +53,7 @@ def home_page():
 def get_context_from_movies(movies_list, context, others):
     if movies_list.shape[0] == 0:
         # no movies were returned so throw error
-        raise Exception("Oops! No movies returned as per your filters")
+        raise Exception("Oops! No movies returned as per your filters", True)
 
     return {
         **context,
@@ -123,7 +123,7 @@ def metadata_based_recommender_page():
         except Exception as e:
             context = {
                 **context,
-                'error_message': e,
+                'error_message': handle_internal_error(e),
                 'top_n': top_n,
                 'published_date_filter': published_date_filter,
                 'duration': duration_filter,
@@ -172,7 +172,7 @@ def hybrid_recommender_page():
         try:
             if len(user_movies) == 0:
                 # no movies provided from user
-                raise Exception('Please provide atleast one movie input for us to perform hybrid recommendation..')
+                raise Exception('Please provide atleast one movie input for us to perform hybrid recommendation..', True)
 
             # if the user is not logged in, redirect to hybrid page
             if "google_id" in session:
@@ -188,7 +188,7 @@ def hybrid_recommender_page():
         except Exception as e:
             context = {
                 **context,
-                'error_message': e,
+                'error_message': handle_internal_error(e),
             }
     elif request.method == "GET":
         list_movies_preference = request.args.get('list-movies') # if the form is submitted actually, and not just get request occurred directly
@@ -222,7 +222,7 @@ def hybrid_recommender_page():
             except Exception as e:
                 context = {
                     **context,
-                    'error_message': e,
+                    'error_message': handle_internal_error(e),
 
                     'top_n': top_n,
                     'published_date_filter': published_date_filter,

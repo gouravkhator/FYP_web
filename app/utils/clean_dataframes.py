@@ -9,7 +9,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 # my defined modules
-from app.utils.global_variables import get_inputpath_csv, get_outputpath_csv
+from app.utils.global_variables import get_inputpath_csv, get_outputpath_csv, handle_internal_error
 
 import warnings; warnings.simplefilter('ignore')
 
@@ -19,7 +19,7 @@ def clean_movies_metadata():
     
     # check if original unprocessed dataset is present or not
     if not os.path.exists(movies_metadata_dataset_path):
-        raise Exception(f'Input dataset: {movies_metadata_dataset_path} not found')
+        raise Exception(f'Input dataset: {movies_metadata_dataset_path} not found', True)
 
     md=pd.read_csv(movies_metadata_dataset_path)
     
@@ -55,7 +55,7 @@ def generate_smd_metadata_recom():
     '''
     def check_file_exists_and_read(filepath):
         if not os.path.exists(filepath):
-            raise Exception(f'Input dataset: {filepath} not found')
+            raise Exception(f'Input dataset: {filepath} not found', True)
         
         return pd.read_csv(filepath)
 
@@ -73,7 +73,7 @@ def generate_smd_metadata_recom():
         dataset_path = get_inputpath_csv(filename='keywords.csv')
         keywords = check_file_exists_and_read(dataset_path)
     except Exception as e:
-        print('Error caused: ', e.args[0])
+        print(handle_internal_error(e))
         exit(1)
 
     '''

@@ -4,13 +4,13 @@ try:
     import os
 
     # my defined modules
-    from app.utils.global_variables import get_outputpath_csv, add_movie_filters_cli, get_searched_movie_info
+    from app.utils.global_variables import get_outputpath_csv, add_movie_filters_cli, get_searched_movie_info, handle_internal_error
     from app.utils.clean_dataframes import generate_smd_metadata_recom, get_cosine_sim_matrix
     from app.utils.movie_filters import add_published_date_filter, add_duration_filter, remove_zero_field_values
 
     import warnings; warnings.simplefilter('ignore')
 except Exception as e:
-    print('Some modules could not be imported, error: ',e)
+    print('Some modules could not be imported')
     exit(1)
 
 '''
@@ -44,7 +44,7 @@ def get_metadata_based_recom(title, top_n=10, published_date_filter = "Relevant"
     # the movie titles are stored in lowercase format in title_lower field for checking without case sensitivity, so get the index of its lower case equivalent
     
     if idx == None:
-        raise Exception(f"No movies matched the given movie : {title}")
+        raise Exception(f"No movies matched the given movie : {title}", True)
 
     sim_scores = list(enumerate(cosine_sim[idx]))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
@@ -100,5 +100,4 @@ if __name__ == '__main__':
         else:
             print("No movies found as per your taste...")
     except Exception as e:
-        print("Error: ",e)
-
+        print("Error: \n", handle_internal_error(e))

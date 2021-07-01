@@ -10,7 +10,7 @@ try:
 
     import warnings; warnings.simplefilter('ignore')
 except Exception as e:
-    print('Some modules could not be imported, error: ',e)
+    print('Some modules could not be imported')
     exit(1)
 
 def render_simple_recommender(genre='Comedy', top_n = 10, published_date_filter = "Relevant", duration_filter = "no-filter"):
