@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Hybrid Recommendation
+Personalised Recommendation
 {% endblock %}
 
 {% block content %}
 <section id="hybrid-recom-page">
-    <h2>Hybrid Recommendation</h2>
+    <h2>Personalised Recommendation for You</h2>
 
     <div>
         {% if 'google_id' not in session %}
@@ -49,7 +49,7 @@ Hybrid Recommendation
 
         <form action="/recommend/hybrid" method="post" id="preferences-form">
             <h2 style="margin-top: 10px;">Your Preferences</h2>
-            <h3>Enter your 5 favourite movies for us to do hybrid recommendation...</h3>
+            <h3>Enter your 5 favourite movies for us to do personalised recommendation...</h3>
             {% for i in range(1,6) %}
                 <div class="hybrid-movie-question">
                     <label for="movie-title-{{i}}">Movie {{i}}</label>
@@ -91,7 +91,7 @@ Hybrid Recommendation
 
             {% else %}
 
-            <h3>Save your favourite movie preferences, for better hybrid recommendation</h3>
+            <h3>Save your favourite movie preferences, for better personalised recommendation</h3>
 
             {% endif %}
         </article>
