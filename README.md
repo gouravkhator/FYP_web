@@ -1,6 +1,6 @@
-# Movies Recommendation System
+# Personalised Movie Recommendation System
 
-This is the final year project.
+This is a Final Year Project. This project focuses on showcasing non-personalised recommendations with a spice of personalised ones.
 
 ## Team Members with their University Roll Numbers
 
