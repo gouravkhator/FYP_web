@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "movies-recommender-fyp",
+  "private_key_id": "heilB1562d8s3s52ds82s2823xxs82",
+  "private_key": "-----BEGIN PRIVATE KEY-----\n28a731c5-58b0-4355-83b3-f34ee5fed25c28a731c5-58b0-4355-83b3-f34ee5fed25c\n28a731c5-58b0-4355-83b3-f34ee5fed25c28a731c5-58b0-4355-83b3-f34ee5fed25c\n75ea5e27-01c9-4af3-b175-f52a1ea8a308\na83c3382-e0a6-11eb-ba80-0242ac130004\na83c3382-e0a6-11eb-ba80-0242ac130004a83c3382-e0a6-11eb-ba80-0242ac130004\na83c3382-e0a6-11eb-ba80-0242ac130004a83c3382-e0a6-11eb-ba80-0242ac130004\na83c3382-e0a6-11eb-ba80-0242ac130004a83c3382-e0a6-11eb-ba80-0242ac130004\na83c3382-e0a6-11eb-ba80-0242ac130004a83c3382-e0a6-11eb-ba80-0242ac130004==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-gen-admin-29ft@movies-recommender-fyp.iam.gserviceaccount.com",
+  "client_id": "4654651328968652356",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-gen-admin-29ft%40movies-recommender-fyp.iam.gserviceaccount.com"
+}

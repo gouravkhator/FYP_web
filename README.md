@@ -37,17 +37,29 @@ pipenv shell
 
 ### Files required for running the main webapp and CLI
 
-* Keep the Firebase client secret and admin secret files:
-  - key/client_secret_oauth.json
-  - key/fb_admin_config.json
-* Keep the listed **input** csv files in the path `app/inputs/`:
+Links:
+* *Input Datasets*: [Mega Link for Input dataset files](https://mega.nz/folder/DKIGCBjS#akcu4b-_iTqZguhHZ3sXEg).
+
+* *Cosine Similarity Matrix(zipped)*: [Mega Link for compressed cosine_matrix.npy](https://mega.nz/file/lJgQ2ZDC#dNmSMyBdEegXYLNenS_0cOXJvAqlFOcHdwdJbgbkZvQ).
+
+* For referring to the actual TMDB-5000 dataset, refer [here](https://www.kaggle.com/tmdb/tmdb-movie-metadata).
+
+Samples for some important files:
+* Samples for all the files to be given in `key/` folder is provided in `samples/` folder.
+* Sample for metadata_smd.csv file is also provided in `samples/` folder.
+
+Follow the below steps after downloading the above files from respective links:
+* Keep the Firebase client secret and admin secret files in the listed paths:
+  - `key/client_secret_oauth.json`
+  - `key/fb_admin_config.json`
+* Keep the downloaded **input** csv files in the path `app/inputs/` as per the listed naming file conventions:
   - movies_metadata.csv
   - links.csv
   - credits.csv
   - keywords.csv
   - ratings_small.csv
-* Generate the **output** files by running the below scripts for each recommendation algorithms
-* Keep the cosine similarity matrix in the path `app/outputs/cosine_matrix.npy`
+* Generate the **output** files by running the below scripts for each recommendation algorithms.
+* Extract the above Mega linked cosine similarity matrix in the filepath `app/outputs/cosine_matrix.npy`
 
 ---
 

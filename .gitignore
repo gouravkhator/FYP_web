@@ -2,9 +2,6 @@
 __pycache__/
 *.pyc
 
-*.csv
-*.npy
-*.npz
-*.zip
-
+app/inputs/
+app/outputs/
 key/
